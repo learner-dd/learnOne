@@ -12,21 +12,37 @@
   <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
 
 	<script type="text/javascript">
-		// (function() {
-		  /*    
-		  在注释下方写下代码
-		  给按钮button绑定一个点击事件
-		  在事件处理函数中
-		  获取aqi-input输入的值，并显示在aqi-display中
-		  */
-		  var weather = document.getElementById("aqi-input");
-		  var btn = document.getElementById("button");
-		  var values = document.getElementById("aqi-display");
-		  btn.addEventListener('click',getWeather);
-		// })();
+		  var weather = document.getElementById("aqi-input"),
+			  btn = document.getElementById("button"),
+			  values = document.getElementById("aqi-display");
+		  //dom1级
+		  // btn.onclick = function(){
+		  // 	values.innerHTML = weather.value;
+		  // }
+
+		  //dom2级
+		/*btn.addEventListener('click',getWeather);
+		function getWeather(){
+			values.innerHTML = weather.value;
+		}*/
+
+		//多浏览器支持
+		function addEvent(ele, eventName, funName){
+			if(ele.addEventListener){
+				ele.addEventListener(eventName,funName);
+			}else if(ele.attachEvent){
+				ele.attachEvent('on'+eventName, funName);
+			}else{
+				ele.eventName = funName;
+			}
+		}
+
+
 		function getWeather(){
 			values.innerHTML = weather.value;
 		}
+
+		addEvent(btn, "click", getWeather);
 	</script>
 </body>
 </html>
