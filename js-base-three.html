@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-base-task3</title>
+</head>
+<body>
+<!-- 	读取页面上已有的source列表，从中提取出城市以及对应的空气质量
+		将数据按照某种顺序排序后，在resort列表中按照顺序显示出来
+
+		思路：循环原来的li列表，获取所有li的文本内容，再使用数组把获取的li的数据存入
+			  在点击排序按钮时，再使用排序方法sort通过空气质量的大小进行排序，然后循环排序后的数组，
+			  给ul创建子节点li，把获取的排序后的数据放入li
+ -->
+ <ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+  </ul>
+  <button id="sort-btn">排序</button>
+  <ul id="resort">
+    <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+  </ul>
+
+  
+ <script type="text/javascript">
+ 	var lis = document.getElementsByTagName("li"),
+ 		btn = document.getElementById("sort-btn"),
+ 		uls = document.getElementById("resort"),
+ 	    sorts = []; 
+ 	
+ 	for (var i = lis.length - 1; i >= 0; i--) {
+ 		var liHtml = lis[i].innerText;
+		sorts.push(liHtml);
+ 	}
+	
+
+	btn.onclick = function(){
+		var sort = sorts.sort(function(a, b){
+			return a.substring(7,9) - b.substring(7,9);
+		});
+		// console.log(sort);
+		sort.forEach(sources => {
+			// console.log(sources);
+ 			var reLi = document.createElement("li");
+ 			reLi.innerHTML = sources;
+ 			uls.appendChild(reLi);
+ 		})
+	}
+	
+
+ </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>js-base-task2</title>
 	<style type="text/css"></style>
 </head>
 <body>
@@ -25,16 +25,32 @@
 		
 		var ul = document.getElementById("aqi-list");
 
-		for (var i = 0; i < aqiData.length; i++) {
-			var aqiDatas = aqiData[i];
+		//forEach
+		aqiData.forEach(aqiDatas => {
+			/*aqiData.filter(aqiDatas => (aqiDatas[1] > 60 ){
+				var lis = document.createElement("li");
+				lis.innerHTML = aqiDatas[0].substring(0,2) + "空气质量：" + aqiDatas[1];
+				ul.appendChild(lis);
+			});*/
+			if(aqiDatas[1] > 60){
+				var lis = document.createElement("li");
+				lis.innerHTML = aqiDatas[0].substring(0,2) + "空气质量：" + aqiDatas[1];
+				ul.appendChild(lis);
+			}
+		})
+
+
+		//for循环
+		/*for (var i = 0; i < aqiData.length; i++) {
+			var aqiDatas = aqiData[i];			//["北京", 90] ["上海", 50] ["福州", 10] ["广州", 50] ...
 			// console.log(aqiDatas[1]);		//90 50 10 50 90 100
 			if(aqiDatas[1] > 60){
 				var lis = document.createElement("li");
 				// lis.innerHTML = "空气质量：" + aqiDatas.join("");
-				lis.innerHTML = aqiDatas[0].slice(0,2) + "空气质量：" + aqiDatas[1];
+				lis.innerHTML = aqiDatas[0].substring(0,2) + "空气质量：" + aqiDatas[1];
 				ul.appendChild(lis);
 			}
-		}
+		}*/
 
 		
 	</script>
