@@ -17,8 +17,8 @@
 <body>
 	<input type="text" name="" id="inputs"/>
 	<input type="button" id="leftIn" value="左侧入">
-	<input type="button" id="leftOut" value="左侧出">
 	<input type="button" id="rightIn" value="右侧入">
+	<input type="button" id="leftOut" value="左侧出">
 	<input type="button" id="rightOut" value="右侧出">
 	<br/>
 	<ul id="us">
@@ -34,37 +34,34 @@
 			arrs = [1,2,3,4,5],
 			lis = document.getElementsByTagName("li");
 		// var joins =  arrs.join(" ");
-		arrs.forEach(arr => {
-			var addLis = document.createElement("li");
-			addLis.innerHTML = arr;
-			us.appendChild(addLis);
-		})
+		// arrs.forEach(arr => {
+		// 	var addLis = document.createElement("li");
+		// 	addLis.innerHTML = arr;
+		// 	us.appendChild(addLis);
+		// })
 		// document.write(joins);
 
 		leftIn.addEventListener("click", function(){
 			// arrs.unshift(inputs.value);
 			var addLis = document.createElement("li");
 			addLis.innerHTML = inputs.value;
-			// // lis[0].insertBefore(addLis);
-			// lis.forEach(li => {
-			// 	li.insertBefore(addLis);
-			// })
-			for(var i =0 ;i<lis.length; i++){
-				lis[i].insertBefore(addLis,null);
-			}
-			// document.write(arrs.join(" "));
+			inputs.value = "";
+			us.insertBefore(addLis, us.childNodes[0]);
 		});
 		leftOut.addEventListener("click", function(){
-			arrs.shift(arrs[arrs.length - 1]);
-			document.write(arrs.join(" "));
+			// arrs.shift(arrs[arrs.length - 1]);
+			// document.write(arrs.join(" "));
+			us.removeChild(lis[0]);
 		});
 		rightIn.addEventListener("click", function(){
-			arrs.push(inputs.value);
-			document.write(arrs.join(" "));
+			// arrs.push(inputs.value);
+			var addLis = document.createElement("li");
+			addLis.innerHTML = inputs.value;
+			// inputs.value = null;
+			us.appendChild(addLis);
 		});
 		rightOut.addEventListener("click", function(){
-			arrs.pop();
-			document.write(arrs.join(" "));
+			us.removeChild(lis[lis.length-1]);
 		});
 
 	
@@ -75,7 +72,7 @@
 				alert("s"); 
 			});
 		});*/
-		for (var i = lis.length - 1; i >= 0; i--) {
+		/*for (var i = lis.length - 1; i >= 0; i--) {
 			// console.log(lis[i]);	
 			var arr = lis[i].innerText;
 			// console.log(arr);
@@ -83,7 +80,7 @@
 				// alert(this);	//[object HTMLLIElement]
 				us.removeChild(this);
 			}
-		}
+		}*/
  
 	</script>
 </body>
