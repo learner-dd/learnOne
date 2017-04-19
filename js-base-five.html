@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-base-task5</title>
+	<style type="text/css">
+		ul{
+			list-style: none;
+
+		}
+		li{
+			float: left;
+			width: 15px;
+    		text-align: center;
+    		background-color: red;
+    		margin-left: 5px;
+    		color: red;
+    		font-size: 0px;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" name="" id="inputs"/>
+	<input type="button" id="leftIn" value="左侧入">
+	<input type="button" id="rightIn" value="右侧入">
+	<input type="button" id="leftOut" value="左侧出">
+	<input type="button" id="rightOut" value="右侧出">
+	<input type="button" id="sorts" value="冒泡排序" >
+	<br/>
+	<ul id="us">
+		
+	</ul>
+	<script type="text/javascript">
+		var inputs = document.getElementById("inputs"),
+			leftIn = document.getElementById("leftIn"),
+			leftOut = document.getElementById("leftOut"),
+			rightIn = document.getElementById("rightIn"),
+			rightOut = document.getElementById("rightOut"),
+			sorts = document.getElementById("sorts"),
+			us = document.getElementById("us"),
+			lis = document.getElementsByTagName("li"),
+			arrs = [];
+
+		leftIn.addEventListener("click", function(){
+			var addLis = document.createElement("li");
+			addLis.innerHTML = inputs.value;
+			addLis.style.height = inputs.value + "px";
+			us.insertBefore(addLis, us.childNodes[0]);
+			arrs.unshift(addLis.innerHTML);
+			console.log(arrs);
+		});
+		leftOut.addEventListener("click", function(){
+			us.removeChild(lis[0]);
+			arrs.shift();
+			console.log(arrs);
+		});
+		rightIn.addEventListener("click", function(){
+			var addLis = document.createElement("li");
+			addLis.style.height = inputs.value + "px";
+			addLis.innerHTML = inputs.value;
+			us.appendChild(addLis);
+			arrs.push(parseInt(addLis.innerHTML));
+			console.log(arrs);
+		});
+		rightOut.addEventListener("click", function(){
+			us.removeChild(lis[lis.length-1]);
+			arrs.pop();
+			console.log(arrs);
+		});
+
+		sorts.addEventListener("click", function(){
+			alert(arrs);
+			compareArrs(arrs);
+			
+		});
+	
+		function compareArrs(arrs){
+			var arrsInt = arrs.map(function(arrsMap){
+				return +arrsMap;
+			});
+			for (var i = 0; i < arrsInt.length-1 ; i++) {
+				for( var j = i+1; j < arrsInt.length; j++){
+					if(arrsInt[i] > arrsInt[j] ) {
+						var temp = arrsInt[i];
+						arrsInt[i] = arrsInt[j];
+						arrsInt[j] = temp;
+					}	
+				}
+				return arrsInt;
+			}
+			
+		}
+
+		// var bubbleSort=function(arrs){  
+		//     for(var i=0;i<arrs.length-1;i++){  
+		//         for(var j=i+1;j<arrs.length;j++){  
+		//             if(arrs[i]>arrs[j]){//如果前面的数据比后面的大就交换  
+		//                 var temp=arrs[i];  
+		//                 arrs[i]=arrs[j];  
+		//                 arrs[j]=temp;  
+		//             }   
+		//         }  
+		//     }   
+		//     return arrs;  
+		// }  
+
+		us.onclick = function(e){
+			alert(this);	//[object HTMLUListElement]
+			us.removeChild(e.target);
+			
+		}
+		
+
+		var dataStr="1,2,3,4,5";//原始字符串  
+	    var dataStrArr=dataStr.split(",");//分割成字符串数组  
+	    var dataIntArr=[];//保存转换后的整型字符串 
+
+	     dataIntArr=dataStrArr.map(function(data){  
+	        return +data;  
+	    });  
+	    console.log(dataIntArr);  
+ 
+	</script>
+</body>
+</html>
