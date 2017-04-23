@@ -30,6 +30,9 @@
 	<ul id="us">
 		
 	</ul>
+	<ul id="testUs">
+		
+	</ul>
 	<script type="text/javascript">
 		var inputs = document.getElementById("inputs"),
 			leftIn = document.getElementById("leftIn"),
@@ -38,6 +41,7 @@
 			rightOut = document.getElementById("rightOut"),
 			sorts = document.getElementById("sorts"),
 			us = document.getElementById("us"),
+			testUs = document.getElementById("testUs"),
 			lis = document.getElementsByTagName("li"),
 			arrs = [];
 
@@ -46,7 +50,7 @@
 			addLis.innerHTML = inputs.value;
 			addLis.style.height = inputs.value + "px";
 			us.insertBefore(addLis, us.childNodes[0]);
-			arrs.unshift(addLis.innerHTML);
+			arrs.unshift(parseInt(addLis.innerHTML));
 			console.log(arrs);
 		});
 		leftOut.addEventListener("click", function(){
@@ -67,10 +71,16 @@
 			arrs.pop();
 			console.log(arrs);
 		});
-
+		
 		sorts.addEventListener("click", function(){
-			alert(arrs);
-			compareArrs(arrs);
+			var length=compareArrs(arrs);
+			us.remove();
+			//循环比较后的数组，放入li，输出页面
+			for(var i=0;i<length.length;i++){
+				var addLis = document.createElement("li");
+				addLis.style.height = length[i] + "px";
+				testUs.appendChild(addLis);
+			}
 			
 		});
 	
@@ -91,18 +101,7 @@
 			
 		}
 
-		// var bubbleSort=function(arrs){  
-		//     for(var i=0;i<arrs.length-1;i++){  
-		//         for(var j=i+1;j<arrs.length;j++){  
-		//             if(arrs[i]>arrs[j]){//如果前面的数据比后面的大就交换  
-		//                 var temp=arrs[i];  
-		//                 arrs[i]=arrs[j];  
-		//                 arrs[j]=temp;  
-		//             }   
-		//         }  
-		//     }   
-		//     return arrs;  
-		// }  
+		
 
 		us.onclick = function(e){
 			alert(this);	//[object HTMLUListElement]
@@ -110,16 +109,6 @@
 			
 		}
 		
-
-		var dataStr="1,2,3,4,5";//原始字符串  
-	    var dataStrArr=dataStr.split(",");//分割成字符串数组  
-	    var dataIntArr=[];//保存转换后的整型字符串 
-
-	     dataIntArr=dataStrArr.map(function(data){  
-	        return +data;  
-	    });  
-	    console.log(dataIntArr);  
- 
 	</script>
 </body>
 </html>
