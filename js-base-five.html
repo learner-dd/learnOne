@@ -41,17 +41,18 @@
 			rightOut = document.getElementById("rightOut"),
 			sorts = document.getElementById("sorts"),
 			us = document.getElementById("us"),
-			//testUs = document.getElementById("testUs"),
+			testUs = document.getElementById("testUs"),
 			lis = document.getElementsByTagName("li"),
 			arrs = [];
 
 		leftIn.addEventListener("click", function(){
-			var addLis = document.createElement("li");
+			isNum(this);
+			/*var addLis = document.createElement("li");
 			addLis.innerHTML = inputs.value;
 			addLis.style.height = inputs.value + "px";
 			us.insertBefore(addLis, us.childNodes[0]);
 			arrs.unshift(parseInt(addLis.innerHTML));
-			console.log(arrs);
+			console.log(arrs);*/
 		});
 		leftOut.addEventListener("click", function(){
 			us.removeChild(lis[0]);
@@ -59,11 +60,15 @@
 			console.log(arrs);
 		});
 		rightIn.addEventListener("click", function(){
-			var addLis = document.createElement("li");
+			isNum(this);
+			//alert(this);	//[object HTMLInputElement]
+			//alert(this.id);
+
+			/*var addLis = document.createElement("li");
 			addLis.style.height = inputs.value + "px";
 			addLis.innerHTML = inputs.value;
 			us.appendChild(addLis);
-			arrs.push(parseInt(addLis.innerHTML));
+			arrs.push(parseInt(addLis.innerHTML));*/
 		});
 		rightOut.addEventListener("click", function(){
 			us.removeChild(lis[lis.length-1]);
@@ -75,6 +80,7 @@
 				alert(lis[i].innerHTML);
 				us.removeChild(lis[i]);
 			}
+			
 			var length=compareArrs(arrs);
 			//循环比较后的数组，放入li，输出页
 			length.forEach(lengths => {
@@ -96,9 +102,9 @@
 						arrsInt[j] = temp;
 					}	
 				}
-				return arrsInt;
+				
 			}
-			
+			return arrsInt;
 		}
 
 		
@@ -106,7 +112,31 @@
 		us.onclick = function(e){
 			alert(this);	//[object HTMLUListElement]
 			us.removeChild(e.target);
-			
+		}
+
+
+		function isNum(obj){
+			var addLis = document.createElement("li");
+			if(arrs.length >= 60){
+				alert("不能再添加啦！");
+				return false;
+			}
+			if(inputs.value <10 || inputs.value >100){
+				alert("请输入10-100之间的数字");
+			}else{
+				if(obj.id == "leftIn"){
+					addLis.innerHTML = inputs.value;
+					addLis.style.height = inputs.value + "px";
+					us.insertBefore(addLis, us.childNodes[0]);
+					arrs.unshift(parseInt(addLis.innerHTML));
+				}
+				if(obj.id == "rightIn"){
+					addLis.style.height = inputs.value + "px";
+					addLis.innerHTML = inputs.value;
+					us.appendChild(addLis);
+					arrs.push(parseInt(addLis.innerHTML));
+				}
+			}
 		}
 		
 	</script>
