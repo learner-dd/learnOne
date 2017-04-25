@@ -121,22 +121,27 @@
 				alert("不能再添加啦！");
 				return false;
 			}
-			if(inputs.value <10 || inputs.value >100){
-				alert("请输入10-100之间的数字");
+			if(!isNaN(inputs.value)){
+				if(inputs.value <10 || inputs.value >100 ){
+					alert("请输入10-100之间的数字");
+				}else{
+					if(obj.id == "leftIn"){
+						addLis.innerHTML = inputs.value;
+						addLis.style.height = inputs.value + "px";
+						us.insertBefore(addLis, us.childNodes[0]);
+						arrs.unshift(parseInt(addLis.innerHTML));
+					}
+					if(obj.id == "rightIn"){
+						addLis.style.height = inputs.value + "px";
+						addLis.innerHTML = inputs.value;
+						us.appendChild(addLis);
+						arrs.push(parseInt(addLis.innerHTML));
+					}
+				}
 			}else{
-				if(obj.id == "leftIn"){
-					addLis.innerHTML = inputs.value;
-					addLis.style.height = inputs.value + "px";
-					us.insertBefore(addLis, us.childNodes[0]);
-					arrs.unshift(parseInt(addLis.innerHTML));
-				}
-				if(obj.id == "rightIn"){
-					addLis.style.height = inputs.value + "px";
-					addLis.innerHTML = inputs.value;
-					us.appendChild(addLis);
-					arrs.push(parseInt(addLis.innerHTML));
-				}
+				alert("请输入数字");
 			}
+			
 		}
 		
 	</script>
